@@ -54,7 +54,7 @@ function init_certbotle_install() {
             ;;
             ubuntu)
                 # run add-apt-repository -y ppa:certbot/certbot
-                run apt-get -qq update -y
+                # run apt-get -qq update -y
                 run apt-get -qq install -y certbot
             ;;
         esac
