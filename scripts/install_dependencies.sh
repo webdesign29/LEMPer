@@ -27,7 +27,7 @@ if hash apt-get 2>/dev/null; then
     run apt-get -qq install -y apache2-utils apt-transport-https autoconf automake bash build-essential ca-certificates cmake cron \
         curl dnsutils gcc geoip-bin geoip-database git gnupg2 htop iptables libc-dev libcurl4-openssl-dev libgd-dev libgeoip-dev \
         libssl-dev libxml2-dev libpcre3-dev libxslt1-dev lsb-release make ntpdate openssh-server openssl pkg-config re2c rsync \
-        software-properties-common sasl2-bin snmp sudo sysstat tar tzdata unzip wget whois zlib1g-dev
+        software-properties-common sasl2-bin snmp sudo sysstat tar tzdata unzip wget whois zlib1g-dev ntp
 elif hash yum 2>/dev/null; then
     if [ "${VERSION_ID}" == "5" ]; then
         run yum -y update
