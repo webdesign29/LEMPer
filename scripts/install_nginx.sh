@@ -419,7 +419,7 @@ function init_nginx_install() {
                         if "$NGX_HTTP_NAXSI"; then
                             echo "Add Naxsi Web Application Firewall module..."
                             run git clone -q https://github.com/nbs-system/naxsi.git
-                            sed -i '417,418s/strncpy/memcpy/' /usr/local/src/lemper/nginx_modules/naxsi/naxsi_src/naxsi_skeleton.c
+                            sudo sed -i '417,418s/strncpy/memcpy/' /usr/local/src/lemper/nginx_modules/naxsi/naxsi_src/naxsi_skeleton.c
 
                             if "$NGINX_DYNAMIC_MODULE"; then
                                 NGX_CONFIGURE_ARGS="--add-dynamic-module=${EXTRA_MODULE_DIR}/naxsi/naxsi_src ${NGX_CONFIGURE_ARGS}"
