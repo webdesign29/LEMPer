@@ -35,8 +35,9 @@ function add_redis_repo() {
             fi
         ;;
         ubuntu)
-            run add-apt-repository -y ppa:chris-lea/redis-server && \
-            run apt-get -qq update -y
+            echo "Not installing repo..."
+            # run add-apt-repository -y ppa:chris-lea/redis-server && \
+            # run apt-get -qq update -y
         ;;
         *)
             fail "Unable to add Redis, this GNU/Linux distribution is not supported."
