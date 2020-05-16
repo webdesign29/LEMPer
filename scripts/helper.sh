@@ -410,6 +410,10 @@ function get_release_name() {
                         # Ubuntu release 19.04
                         RELEASE_NAME=${UBUNTU_CODENAME:-"disco"}
                     ;;
+                    "20.04")
+                        # Ubuntu release 20.04
+                        RELEASE_NAME=${UBUNTU_CODENAME:-"focal"}
+                    ;;
                     *)
                         RELEASE_NAME="unsupported"
                     ;;
