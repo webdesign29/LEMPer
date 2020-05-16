@@ -11,7 +11,7 @@ if [ -f ".env" ]; then
     # Clean environemnt first.
     # shellcheck source=.env.dist
     # shellcheck disable=SC2046
-    unset $(grep -v '^#' .env | grep -v '^\[' | sed -E 's/(.*)=.*/\1/' | xargs -0)
+    unset $(grep -v '^#' .env | grep -v '^\[' | sed -E 's/(.*)=.*/\1/' | xargs)
 
     # shellcheck source=.env.dist
     # shellcheck disable=SC1094
