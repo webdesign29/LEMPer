@@ -78,7 +78,8 @@ if [[ -n $(command -v php5.6) || \
     -n $(command -v php7.0) || \
     -n $(command -v php7.1) || \
     -n $(command -v php7.2) || \
-    -n $(command -v php7.3) ]]; then
+    -n $(command -v php7.3) || \
+    -n $(command -v php7.4) ]]; then
 
     warning -e "\nPHP & FPM already installed. Should we remove it?"
     echo "Backup your config and data before continue!"

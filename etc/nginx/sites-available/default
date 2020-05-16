@@ -27,7 +27,7 @@ server {
     location ~ ^/(status|ping)$ {
         include /etc/nginx/fastcgi_params;
 
-        fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
         fastcgi_param SCRIPT_FILENAME $fastcgi_script_name;
 
         allow all;
@@ -47,7 +47,7 @@ server {
         # Uncomment to Enable PHP FastCGI cache.
         #include /etc/nginx/includes/fastcgi_cache.conf;
 
-        fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
     }
 
     location ~ \.php74$ {
@@ -146,13 +146,13 @@ server {
             # Uncomment to Enable PHP FastCGI cache.
             #include /etc/nginx/includes/fastcgi_cache.conf;
 
-            fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+            fastcgi_pass unix:/run/php/php7.4-fpm.sock;
         }
     }
 
     # Pass the PHP scripts to FastCGI server listening on Unix socket.
     #
-    location ~ \.(php|php73)$ {
+    location ~ \.(php|php74)$ {
         try_files $uri =404;
 
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
@@ -164,17 +164,17 @@ server {
         # Uncomment to Enable PHP FastCGI cache.
         #include /etc/nginx/includes/fastcgi_cache.conf;
 
-        fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
     }
 
-    location ~ \.php74$ {
+    location ~ \.php73$ {
         try_files $uri =404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_index index.php;
         include /etc/nginx/fastcgi_params;
         include /etc/nginx/includes/fastcgi.conf;
         #include /etc/nginx/includes/fastcgi_cache.conf;
-        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        fastcgi_pass unix:/run/php/php7.3-fpm.sock;
     }
 
     location ~ \.php72$ {

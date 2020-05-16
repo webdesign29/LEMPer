@@ -871,7 +871,7 @@ function init_app() {
     SERVERNAME=""
     WEBROOT=""
     FRAMEWORK="default"
-    PHP_VERSION="7.3"
+    PHP_VERSION="7.4"
     CLONE_SKELETON=false
     ENABLE_FASTCGI_CACHE=false
     ENABLE_PAGESPEED=false

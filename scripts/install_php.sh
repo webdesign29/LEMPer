@@ -56,7 +56,7 @@ function install_php_fpm() {
     # PHP version.
     local PHPv="${1}"
     if [ -z "${PHPv}" ]; then
-        PHPv=${PHP_VERSION:-"7.3"}
+        PHPv=${PHP_VERSION:-"7.4"}
     fi
     local PHP_PKGS=()
     export PHP_IS_INSTALLED="no"
@@ -417,7 +417,7 @@ function optimize_php_fpm() {
     # PHP version.
     local PHPv="${1}"
     if [ -z "${PHPv}" ]; then
-        PHPv=${PHP_VERSION:-"7.3"}
+        PHPv=${PHP_VERSION:-"7.4"}
     fi
 
     echo "Optimizing PHP${PHPv} & FPM configuration..."
@@ -441,13 +441,14 @@ function optimize_php_fpm() {
 [opcache]
 opcache.enable=1
 opcache.enable_cli=0
-opcache.memory_consumption=128
-opcache.interned_strings_buffer=8
-opcache.max_accelerated_files=10000
+opcache.memory_consumption=512
+opcache.interned_strings_buffer=16
+opcache.max_accelerated_files=99013
 opcache.max_wasted_percentage=5
 opcache.validate_timestamps=1
-opcache.revalidate_freq=1
+opcache.revalidate_freq=2
 opcache.save_comments=1
+opcache.fast_shutdown=1
 opcache.error_log="/var/log/php/php${PHPv}-opcache_error.log"
 EOL
         else
@@ -759,10 +760,10 @@ function init_php_fpm_install() {
     esac
 
     # Install default PHP version used by LEMPer.
-    if [[ -z $(command -v php7.3) ]]; then
-        warning -e "\nLEMPer requires PHP 7.3 as default to run its administration tools."
-        echo "PHP 7.3 now being installed..."
-        install_php_fpm "7.3"
+    if [[ -z $(command -v php7.4) ]]; then
+        warning -e "\nLEMPer requires PHP 7.4 as default to run its administration tools."
+        echo "PHP 7.4 now being installed..."
+        install_php_fpm "7.4"
     fi
 
     # Install PHP loader.
