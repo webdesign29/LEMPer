@@ -137,7 +137,7 @@ function init_redis_install {
 
                     # Install PHP Redis.
                     if hash apt-get 2>/dev/null; then
-                        run apt-get -qq install -y php-redis
+                        run apt-get -qq install -y php-igbinary php-redis
                     elif hash yum 2>/dev/null; then
                         if [ "${VERSION_ID}" == "5" ]; then
                             yum -y update
