@@ -124,12 +124,6 @@ case "${1}" in
             . ./scripts/install_memcached.sh
         fi
 
-        ### Phalcon PHP installation ###
-        if [ -f scripts/install_phalcon.sh ]; then
-            echo ""
-            . ./scripts/install_phalcon.sh
-        fi
-
         ### MySQL database installation ###
         if [ -f scripts/install_mariadb.sh ]; then
             echo ""
@@ -170,6 +164,12 @@ case "${1}" in
         if [ -f scripts/secure_server.sh ]; then
             echo ""
             . ./scripts/secure_server.sh "--install"
+        fi
+        
+        ### Phalcon PHP installation ###
+        if [ -f scripts/install_phalcon.sh ]; then
+            echo ""
+            . ./scripts/install_phalcon.sh
         fi
 
         ### FINAL STEP ###

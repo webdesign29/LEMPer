@@ -173,6 +173,20 @@ function enable_phalcon() {
     fi
 }
 
+function init_psr_install(){
+    # PHP version.
+    local PHPv=${PHP_VERSION:-"7.3"}
+    echo 'Installing PSR extention'
+    run git clone https://github.com/jbboehr/php-psr.git
+    run cd php-psr
+    run phpize
+    run ./configure
+    run make
+    run make install
+    run echo extension=psr.so | tee -a /etc/php/7.4/cli/php.ini
+    run echo extension=psr.so | tee -a /etc/php/7.4/fpm/php.ini
+}
+
 # Init Phalcon installer.
 function init_phalcon_install() {
     # PHP version.
@@ -207,16 +221,7 @@ function init_phalcon_install() {
         case ${SELECTED_INSTALLER} in
             1|"repo")
                 echo "Installing Phalcon extension from repository..."
-
                 if hash apt-get 2>/dev/null; then
-                    run git clone https://github.com/jbboehr/php-psr.git
-                    run cd php-psr
-                    run phpize
-                    run ./configure
-                    run make
-                    make install
-                    echo extension=psr.so | tee -a /etc/php/7.4/cli/php.ini
-                    echo extension=psr.so | tee -a /etc/php/7.4/fpm/php.ini
                     run pecl channel-update pecl.php.net
                     pecl install phalcon
                     # run apt-get -qq install -y php-phalcon
@@ -271,11 +276,20 @@ PHP_VERSION=${PHP_VERSION:-"7.3"}
 if [[ -n $(command -v "php${PHP_VERSION}") ]]; then
     #if "php${PHP_VERSION}" --ri phalcon | grep -qwE "phalcon => enabled"; then
     PHPLIB_DIR=$("php-config${PHPv}" | grep -wE "\--extension-dir" | cut -d'[' -f2 | cut -d']' -f1)
+
+    if [ ! -f "${PHPLIB_DIR}/psr.so" ]; then
+        init_psr_install "$@"
+    else
+        warning "PSR extension already installed here ${PHPLIB_DIR}/psr.so. Installation skipped..."
+    fi
+
     if [ ! -f "${PHPLIB_DIR}/phalcon.so" ]; then
+        init_psr_install "$@"
         init_phalcon_install "$@"
     else
         warning "Phalcon extension already installed here ${PHPLIB_DIR}/phalcon.so. Installation skipped..."
     fi
+    
 else
     warning "PHP${PHP_VERSION} & FPM not found. Installation skipped..."
 fi
