@@ -87,6 +87,8 @@ function init_fail2ban_install() {
     else
         SSH_PORT=${SSH_PORT:-22}
         echo "Selected installer was: ${SELECTED_INSTALLER}"
+        echo "Force install"
+        run apt-get -qq install -y fail2ban sendmail
         echo "Enable fail2ban jail"
         # Enable jail
         run cat > /etc/fail2ban/jail.local <<_EOL_
