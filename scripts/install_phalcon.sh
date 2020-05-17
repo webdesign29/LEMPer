@@ -284,12 +284,11 @@ if [[ -n $(command -v "php${PHP_VERSION}") ]]; then
     fi
 
     if [ ! -f "${PHPLIB_DIR}/phalcon.so" ]; then
-        init_psr_install "$@"
         init_phalcon_install "$@"
     else
         warning "Phalcon extension already installed here ${PHPLIB_DIR}/phalcon.so. Installation skipped..."
     fi
-    
+
 else
     warning "PHP${PHP_VERSION} & FPM not found. Installation skipped..."
 fi

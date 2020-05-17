@@ -189,12 +189,12 @@ function install_ufw() {
         run ufw allow 587
 
         # Open IMAPs ports.
-        run ufw allow 143
-        run ufw allow 993
+        # run ufw allow 143
+        # run ufw allow 993
 
         # Open POP3s ports.
-        run ufw allow 110
-        run ufw allow 995
+        # run ufw allow 110
+        # run ufw allow 995
 
         # Open DNS port.
         run ufw allow 53
@@ -270,10 +270,10 @@ function install_csf() {
         run sed -i 's/^TESTING\ =\ "1"/TESTING\ =\ "0"/g' /etc/csf/csf.conf
 
         # Allowed incoming TCP ports.
-        run sed -i "s/^TCP_IN\ =\ \"[0-9_,]*\"/TCP_IN\ =\ \"20,21,25,53,80,110,143,443,465,587,993,995,8081,8082,8083,8443,${SSH_PORT}\"/g" /etc/csf/csf.conf
+        run sed -i "s/^TCP_IN\ =\ \"[0-9_,]*\"/TCP_IN\ =\ \"20,21,25,53,80,443,465,587,8081,8082,8083,8443,${SSH_PORT}\"/g" /etc/csf/csf.conf
 
         # Allowed outgoing TCP ports.
-        run sed -i "s/^TCP_OUT\ =\ \"[0-9_,]*\"/TCP_OUT\ =\ \"20,21,25,53,80,110,143,443,465,587,993,995,8081,8082,8083,8443,${SSH_PORT}\"/g" /etc/csf/csf.conf
+        run sed -i "s/^TCP_OUT\ =\ \"[0-9_,]*\"/TCP_OUT\ =\ \"20,21,25,53,80,443,465,587,8081,8082,8083,8443,${SSH_PORT}\"/g" /etc/csf/csf.conf
 
         # IPv6 support (requires ip6tables).
         if [[ -n $(command -v ip6tables) ]]; then
@@ -285,10 +285,10 @@ function install_csf() {
                 run sed -i 's/^IPV6\ =\ "0"/IPV6\ =\ "1"/g' /etc/csf/csf.conf
 
                 # Allowed incoming TCP ports for IPv6.
-                run sed -i "s/^TCP6_IN\ =\ \"[0-9_,]*\"/TCP6_IN\ =\ \"20,21,25,53,80,110,143,443,465,587,993,995,8081,8082,8083,8443,${SSH_PORT}\"/g" /etc/csf/csf.conf
+                run sed -i "s/^TCP6_IN\ =\ \"[0-9_,]*\"/TCP6_IN\ =\ \"20,21,25,53,80,443,465,587,8081,8082,8083,8443,${SSH_PORT}\"/g" /etc/csf/csf.conf
 
                 # Allowed outgoing TCP ports for IPv6.
-                run sed -i "s/^TCP6_OUT\ =\ \"[0-9_,]*\"/TCP6_OUT\ =\ \"20,21,25,53,80,110,143,443,465,587,993,995,8081,8082,8083,8443,${SSH_PORT}\"/g" /etc/csf/csf.conf
+                run sed -i "s/^TCP6_OUT\ =\ \"[0-9_,]*\"/TCP6_OUT\ =\ \"20,21,25,53,80,443,465,587,8081,8082,8083,8443,${SSH_PORT}\"/g" /etc/csf/csf.conf
             else
                 warning "ip6tables version greater than 1.4.3 required for IPv6 support."
             fi
