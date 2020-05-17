@@ -214,12 +214,11 @@ function init_phalcon_install() {
                     run phpize
                     run ./configure
                     run make
-                    run make test
-                    run make install
-                    run echo extension=psr.so | tee -a /etc/php/7.4/cli/php.ini
-                    run echo extension=psr.so | tee -a /etc/php/7.4/fpm/php.ini
+                    make install
+                    echo extension=psr.so | tee -a /etc/php/7.4/cli/php.ini
+                    echo extension=psr.so | tee -a /etc/php/7.4/fpm/php.ini
                     run pecl channel-update pecl.php.net
-                    run pecl install phalcon
+                    pecl install phalcon
                     # run apt-get -qq install -y php-phalcon
                 elif hash yum 2>/dev/null; then
                     if [ "${VERSION_ID}" == "5" ]; then
