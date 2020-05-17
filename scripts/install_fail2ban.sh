@@ -86,9 +86,10 @@ function init_fail2ban_install() {
         warning "Fail2ban installed in dryrun mode."
     else
         SSH_PORT=${SSH_PORT:-22}
-
+        echo "Selected installer was: ${SELECTED_INSTALLER}"
+        echo "Enable fail2ban jail"
         # Enable jail
-        cat > /etc/fail2ban/jail.local <<_EOL_
+        run cat > /etc/fail2ban/jail.local <<_EOL_
 [DEFAULT]
 # banned for 30 days
 bantime = 2592000
