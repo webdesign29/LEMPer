@@ -209,7 +209,9 @@ function init_phalcon_install() {
                 echo "Installing Phalcon extension from repository..."
 
                 if hash apt-get 2>/dev/null; then
-                    run apt-get -qq install -y php-phalcon
+                    run pecl channel-update pecl.php.net
+                    run pecl install phalcon
+                    # run apt-get -qq install -y php-phalcon
                 elif hash yum 2>/dev/null; then
                     if [ "${VERSION_ID}" == "5" ]; then
                         yum -y update
