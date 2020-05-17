@@ -33,9 +33,14 @@ LEMPer stands for Linux, Engine-X (Nginx), MariaDB and PHP installer written in 
 ### Installing LEMP stack
 
 ```bash
+sudo vim /etc/hostname ## change hostname to fqdn
+
+sudo su
 IP=$(curl ipecho.net/plain)
 hostname=$(hostname)
 echo "$IP $hostname" >> /etc/hosts
+reboot
+
 sudo apt-get install git && git clone -q https://github.com/webdesign29/LEMPer.git && cd LEMPer && cp -f .env.dist .env && sudo ./lemper.sh --install
 
 ```

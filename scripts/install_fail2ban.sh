@@ -54,14 +54,6 @@ function init_fail2ban_install() {
 
                 if hash apt-get 2>/dev/null; then
                     run apt-get -qq install -y fail2ban sendmail
-                elif hash yum 2>/dev/null; then
-                    if [ "${VERSION_ID}" == "5" ]; then
-                        yum -y update
-                        #yum -y localinstall "${NGX_PACKAGE}" --nogpgcheck
-                    else
-                        yum -y update
-                        #yum -y localinstall "${NGX_PACKAGE}"
-                    fi
                 else
                     fail "Unable to install Fail2ban, this GNU/Linux distribution is not supported."
                 fi

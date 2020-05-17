@@ -209,6 +209,15 @@ function init_phalcon_install() {
                 echo "Installing Phalcon extension from repository..."
 
                 if hash apt-get 2>/dev/null; then
+                    run git clone https://github.com/jbboehr/php-psr.git
+                    run cd php-psr
+                    run phpize
+                    run ./configure
+                    run make
+                    run make test
+                    run make install
+                    run echo extension=psr.so | tee -a /etc/php/7.4/cli/php.ini
+                    run echo extension=psr.so | tee -a /etc/php/7.4/fpm/php.ini
                     run pecl channel-update pecl.php.net
                     run pecl install phalcon
                     # run apt-get -qq install -y php-phalcon
